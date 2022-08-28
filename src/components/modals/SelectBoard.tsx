@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../store/data-context";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 import { SunIcon, MoonIcon } from "./Icons";
 import Switch from "react-switch";
 
-const boardNames = ["platform launch", "marketing plan", "roadmap"];
-
 const BoardModal = () => {
   const [isLightModeOn, setIsLightModeOn] = useState(true);
+  const { boards } = useContext(DataContext);
 
-  const hangleChange = () => {
+  const boardNames: string[] = [];
+  for (let i of boards) {
+    boardNames.push(i.name);
+  }
+
+  const handleChange = () => {
     setIsLightModeOn((prev) => !prev);
   };
 
@@ -37,7 +42,7 @@ const BoardModal = () => {
         <SunIcon />
         <label className="h-[20px]">
           <Switch
-            onChange={hangleChange}
+            onChange={handleChange}
             checked={isLightModeOn}
             height={20}
             width={40}

@@ -37,5 +37,5 @@ export const DataContext = React.createContext<ContextDataObject>({
       name: "",
     },
   ],
-  saveFetchedData: (data) => {},
+  saveFetchedData: (data: DataObject[]) => {},
 });

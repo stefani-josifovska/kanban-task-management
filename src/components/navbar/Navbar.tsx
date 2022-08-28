@@ -34,7 +34,9 @@ const Navbar: React.FC = () => {
           <button className="h-8 text-2xl text-stone-500">⋮</button>
         </div>
       </header>
-      {isBoardsMenuOpen && <SelectBoard onBackdropClick={onBackdropClickHandler} />}
+      {isBoardsMenuOpen && (
+        <SelectBoard onBackdropClick={onBackdropClickHandler} />
+      )}
     </>
   );
 };
