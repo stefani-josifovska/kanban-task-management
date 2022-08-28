@@ -13,6 +13,9 @@ module.exports = {
         "main-purple": "#635FC7",
         "hover-purple": "#A8A4FF",
       },
+      boxShadow: {
+        "task-shadow": "0 4px 6px rgba(54, 78, 126, 0.101545)",
+      },
     },
   },
   plugins: [],

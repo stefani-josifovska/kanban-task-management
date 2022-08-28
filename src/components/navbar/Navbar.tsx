@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../store/data-context";
 import Button from "../UI/Button";
 import { ArrowIcon } from "./ArrowIcon";
 import SelectBoard from "../modals/SelectBoard";
 
 const Navbar: React.FC = () => {
   const [isBoardsMenuOpen, setIsBoardsMenuOpen] = useState(false);
+  const { activeBoard } = useContext(DataContext);
 
   const onArrowClickHandler = () => {
     setIsBoardsMenuOpen((prev) => !prev);
@@ -23,7 +25,7 @@ const Navbar: React.FC = () => {
             <div className="h-full flex-1 bg-black rounded-sm bg-purple-700/75"></div>
             <div className="h-full flex-1 bg-black rounded-sm bg-purple-700/50"></div>
           </div>
-          <h1 className="font-Jakarta text-lg">Platform Launch</h1>
+          <h1 className="font-Jakarta text-lg">{activeBoard}</h1>
           <ArrowIcon
             className={`${isBoardsMenuOpen ? "rotate-180" : ""}`}
             onClick={onArrowClickHandler}

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { DataContext } from "../../store/data-context";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
@@ -7,15 +7,20 @@ import Switch from "react-switch";
 
 const BoardModal = () => {
   const [isLightModeOn, setIsLightModeOn] = useState(true);
-  const { boards } = useContext(DataContext);
+  const { boards, activeBoard, setActiveBoard } = useContext(DataContext);
 
   const boardNames: string[] = [];
   for (let i of boards) {
     boardNames.push(i.name);
   }
 
-  const handleChange = () => {
+  const handleModeChange = () => {
     setIsLightModeOn((prev) => !prev);
+  };
+
+  const onBoardClickHandler = (e: React.MouseEvent) => {
+    setActiveBoard(e.currentTarget.childNodes[0].textContent!);
+    console.log(e.currentTarget.childNodes[0].textContent)
   };
 
   return (
@@ -28,7 +33,10 @@ const BoardModal = () => {
           return (
             <li
               key={Math.random().toString()}
-              className="pl-6 py-3.5 text-base capitalize text-[#828FA3] font-semibold rounded-r-full hover:cursor-pointer hover:bg-main-purple/80 hover:text-white focus:bg-main-purple"
+              className={`pl-6 py-3.5 text-base capitalize text-[#828FA3] font-semibold rounded-r-full hover:cursor-pointer hover:bg-main-purple/80 hover:text-white focus:bg-main-purple ${
+                name === activeBoard && "bg-main-purple text-white"
+              }`}
+              onClick={onBoardClickHandler}
             >
               {name}
             </li>
@@ -42,7 +50,7 @@ const BoardModal = () => {
         <SunIcon />
         <label className="h-[20px]">
           <Switch
-            onChange={handleChange}
+            onChange={handleModeChange}
             checked={isLightModeOn}
             height={20}
             width={40}

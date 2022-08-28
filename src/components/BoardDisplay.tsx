@@ -3,10 +3,11 @@ import useRequest from "../hooks/use-request";
 import { DataContext, DataObject } from "../store/data-context";
 import EmptyBoard from "./EmptyBoard";
 import Loading from "./Loading";
+import TaskCard from "./UI/TaskCard";
 
 const BoardDisplay: React.FC = () => {
   const { isLoading, error, sendRequest } = useRequest();
-  const { boards, saveFetchedData } = useContext(DataContext);
+  const { boards, saveFetchedData, activeBoard } = useContext(DataContext);
 
   useEffect(() => {
     const getFetchedData = (data: DataObject[]) => {
@@ -18,12 +19,26 @@ const BoardDisplay: React.FC = () => {
     );
   }, [saveFetchedData, sendRequest]);
 
+  const activeBoardData = boards.filter((obj) => obj.name === activeBoard);
+
   return (
     <>
       {error && <p>error</p>}
       {isLoading && <Loading />}
       {!isLoading && (
-        <>{boards.length === 0 ? <EmptyBoard /> : <p>display</p>}</>
+        <>
+          {activeBoardData[0]?.columns.length === 0 ? (
+            <EmptyBoard />
+          ) : (
+            <div className="min-h-[calc(100vh-64px)] bg-[#F4F7FD]">
+              <TaskCard
+                taskTitle="Title"
+                subtasksQty={3}
+                completedSubtasksQty={0}
+              />
+            </div>
+          )}
+        </>
       )}
     </>
   );

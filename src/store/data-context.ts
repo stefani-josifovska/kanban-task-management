@@ -16,6 +16,8 @@ export type DataObject = {
 export type ContextDataObject = {
   boards: DataObject[];
   saveFetchedData: (data: DataObject[]) => void;
+  activeBoard: string,
+  setActiveBoard: (boardName: string) => void
 };
 
 export const DataContext = React.createContext<ContextDataObject>({
@@ -38,4 +40,6 @@ export const DataContext = React.createContext<ContextDataObject>({
     },
   ],
   saveFetchedData: (data: DataObject[]) => {},
+  activeBoard: "",
+  setActiveBoard: (boardName: string) => {}
 });
