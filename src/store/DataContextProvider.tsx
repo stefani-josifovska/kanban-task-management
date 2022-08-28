@@ -4,24 +4,7 @@ import { DataObject, DataContext, ContextDataObject } from "./data-context";
 const DataContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [dataToDisplay, setDataToDisplay] = useState<DataObject[]>([
-    {
-      columns: [
-        {
-          name: "",
-          tasks: [
-            {
-              description: "",
-              status: "",
-              subtasks: [{ isCompleted: false, title: "" }],
-              title: "",
-            },
-          ],
-        },
-      ],
-      name: "",
-    },
-  ]);
+  const [dataToDisplay, setDataToDisplay] = useState<DataObject[]>([]);
 
   const saveFetchedData = useCallback((data: DataObject[]) => {
     setDataToDisplay(data);
