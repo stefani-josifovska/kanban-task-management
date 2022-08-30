@@ -30,7 +30,7 @@ const BoardDisplay: React.FC = () => {
           {activeBoardData[0]?.columns.length === 0 ? (
             <EmptyBoard />
           ) : (
-            <div className="min-h-[calc(100vh-64px)] bg-[#F4F7FD] flex gap-4 pt-4 px-4 overflow-x-scroll">
+            <div className="min-h-[calc(100vh-64px)] bg-[#F4F7FD] flex gap-4 p-4 pt-20 overflow-x-scroll">
               {activeBoardData[0]?.columns.map((col) => {
                 return (
                   <Column

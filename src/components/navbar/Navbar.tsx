@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="bg-white flex justify-between h-16 items-center px-4">
+      <header className="bg-white flex justify-between h-16 w-screen items-center px-4 fixed">
         <div className="flex justify-between gap-x-4 items-center">
           <div className="h-6 w-6 flex justify-between gap-0.5">
             <div className="h-full flex-1 bg-black rounded-sm bg-purple-700"></div>
