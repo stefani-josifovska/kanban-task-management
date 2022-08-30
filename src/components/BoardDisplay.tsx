@@ -3,7 +3,7 @@ import useRequest from "../hooks/use-request";
 import { DataContext, DataObject } from "../store/data-context";
 import EmptyBoard from "./EmptyBoard";
 import Loading from "./Loading";
-import TaskCard from "./UI/TaskCard";
+import Column from "./UI/Column";
 
 const BoardDisplay: React.FC = () => {
   const { isLoading, error, sendRequest } = useRequest();
@@ -30,12 +30,16 @@ const BoardDisplay: React.FC = () => {
           {activeBoardData[0]?.columns.length === 0 ? (
             <EmptyBoard />
           ) : (
-            <div className="min-h-[calc(100vh-64px)] bg-[#F4F7FD]">
-              <TaskCard
-                taskTitle="Title"
-                subtasksQty={3}
-                completedSubtasksQty={0}
-              />
+            <div className="min-h-[calc(100vh-64px)] bg-[#F4F7FD] flex gap-4 pt-4 px-4 overflow-x-scroll">
+              {activeBoardData[0]?.columns.map((col) => {
+                return (
+                  <Column
+                    key={Math.random().toString()}
+                    colName={col.name}
+                    tasks={col.tasks}
+                  />
+                );
+              })}
             </div>
           )}
         </>

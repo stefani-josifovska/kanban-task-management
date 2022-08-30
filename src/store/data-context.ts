@@ -1,14 +1,16 @@
 import React from "react";
 
+export type TasksObject = {
+  description: string;
+  status: string;
+  subtasks: { isCompleted: boolean; title: string }[];
+  title: string;
+}
+
 export type DataObject = {
     columns: {
       name: string;
-      tasks: {
-        description: string;
-        status: string;
-        subtasks: { isCompleted: boolean; title: string }[];
-        title: string;
-      }[];
+      tasks: TasksObject[];
     }[];
     name: string;
 };

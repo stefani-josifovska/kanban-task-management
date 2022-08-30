@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         "main-purple": "#635FC7",
         "hover-purple": "#A8A4FF",
+        "medium-gray": "#828FA3",
       },
       boxShadow: {
         "task-shadow": "0 4px 6px rgba(54, 78, 126, 0.101545)",

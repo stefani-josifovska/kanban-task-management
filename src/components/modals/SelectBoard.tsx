@@ -5,7 +5,7 @@ import Backdrop from "./Backdrop";
 import { SunIcon, MoonIcon } from "./Icons";
 import Switch from "react-switch";
 
-const BoardModal = () => {
+const BoardModal: React.FC<{closeNavbar: () => void}> = ({closeNavbar}) => {
   const [isLightModeOn, setIsLightModeOn] = useState(true);
   const { boards, activeBoard, setActiveBoard } = useContext(DataContext);
 
@@ -20,7 +20,7 @@ const BoardModal = () => {
 
   const onBoardClickHandler = (e: React.MouseEvent) => {
     setActiveBoard(e.currentTarget.childNodes[0].textContent!);
-    console.log(e.currentTarget.childNodes[0].textContent)
+    closeNavbar();
   };
 
   return (
@@ -81,7 +81,7 @@ const SelectBoard: React.FC<{ onBackdropClick: () => void }> = ({
   return (
     <>
       {ReactDOM.createPortal(<Backdrop onClick={onClickHandler} />, backdropId)}
-      {ReactDOM.createPortal(<BoardModal />, boardModalId)}
+      {ReactDOM.createPortal(<BoardModal closeNavbar={onClickHandler} />, boardModalId)}
     </>
   );
 };
